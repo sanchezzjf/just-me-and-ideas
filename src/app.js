@@ -23,8 +23,6 @@ const cred = {
 const PORT = process.env.PORT || 443
 const app = express()
 
-app.use()
-
 app.engine('handlebars', Handlebars({extended: false}))
 app.set('view engine', 'handlebars')
 
