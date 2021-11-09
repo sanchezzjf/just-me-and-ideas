@@ -15,7 +15,7 @@ const ca = fs.readFileSync('/etc/letsencrypt/live/sanchezzjf.tk/chain.pem', 'utf
 const cert = fs.readFileSync('/etc/letsencrypt/live/sanchezzjf.tk/cert.pem', 'utf-8')
 
 const cred = {
-    key:privateKey,
+    key: privateKey,
     cert: cert,
     ca: ca
 }
@@ -32,12 +32,12 @@ app.use(express.static(staticFiles))
 
 app.use('/', defaultRouter)
 
-const server = https.createServer( cred, app)
+const server = https.createServer(cred, app)
 
 const startServer = () => {
-    const { address, protocol } = server.address()
+    const { address, port } = server.address()
     const protocol = 'https'
-    logger.info(`App started at ${protocol}://${address}:${PORT}`)
+    logger.info(`App started at ${protocol}://${address}:${port}`)
 }
 
 server.listen(PORT, startServer)
