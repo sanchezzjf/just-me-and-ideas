@@ -6,7 +6,19 @@
 
 {{>_navbar}}
 
-<div class="container">
-    
+<div class="row">
+    <div class="col-sm-8">
+        <div class="container">
+            <div class="row">
+                {{>_post}}
+            </div>
+        </div>
+       {{!--  <div class="row sticky-bottom">
+           {{>_pagination}}
+        </div> --}}
+    </div>
+    <div class="col col-sm-4">
+        {{>_lastPostGrid}}
+    </div>
 </div>
 
