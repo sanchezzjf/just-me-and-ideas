@@ -12,13 +12,15 @@ This is the repository were I'll post everything that I'm learning. Building thi
 
 
 Here's the link to see it:<br>
-[sanchezzjf.tk](http://sanchezzjf.tk)
+[sanchezzjf.tk](http://sanchezzjf.tk:3000)
 
 
 
 ## Soon...
 
-While this grows, maybe I put some stuff in here xDo
+Some crappy layout done, and now I'm gonna start working on the
+database and the schemas, and further changing the hard coded posts
+to the actual posts from database
 
 
 
