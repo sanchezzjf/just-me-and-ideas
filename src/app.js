@@ -4,13 +4,26 @@ import { logger } from './util/logger.js';
 import { defaultRouter } from './routes/default.js';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import fs from 'fs';
+import https from 'https';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const staticFiles = resolve(__dirname, '../', 'public')
 
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/sanchezzjf.tk/privkey.pem', 'utf-8')
+const ca = fs.readFileSync('/etc/letsencrypt/live/sanchezzjf.tk/chain.pem', 'utf-8')
+const cert = fs.readFileSync('/etc/letsencrypt/live/sanchezzjf.tk/cert.pem', 'utf-8')
 
-const PORT = process.env.PORT || 3000
+const cred = {
+    key:privateKey,
+    cert: cert,
+    ca: ca
+}
+
+const PORT = process.env.PORT || 443
 const app = express()
+
+app.use()
 
 app.engine('handlebars', Handlebars({extended: false}))
 app.set('view engine', 'handlebars')
@@ -19,6 +32,12 @@ app.use(express.static(staticFiles))
 
 app.use('/', defaultRouter)
 
-app.listen(PORT, () => {
-    logger.info(`App running at http://localhost:${PORT}`)
-})
+const server = https.createServer( cred, app)
+
+const startServer = () => {
+    const { address, protocol } = server.address()
+    const protocol = 'https'
+    logger.info(`App started at ${protocol}://${address}:${PORT}`)
+}
+
+server.listen(PORT, startServer)
