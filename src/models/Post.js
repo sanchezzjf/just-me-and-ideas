@@ -10,7 +10,7 @@ const PostSchema = new mongoose.Schema({
         required: true,
         description: 'It will show on the side'
     },
-    body: {
+    content: {
         type: String,
         required: true
     }

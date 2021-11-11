@@ -16,7 +16,7 @@ adminRouter.route('/add')
         const post = {
             title: req.body.title,
             description: req.body.description,
-            body: req.body.body
+            content: req.body.content
         }
 
         new PostModel(post).save()
