@@ -20,7 +20,9 @@ adminRouter.route('/add')
         }
 
         new PostModel(newPost).save()
-            .then(logger.info('Created post with success'))
+            .then(() => {
+                logger.info('Created post with success')
+            })
             .catch((err) => logger.error(`Couldn't create. Error: ${err}`))
         /* Database communication */
     })
