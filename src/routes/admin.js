@@ -31,3 +31,6 @@ adminRouter.route('/edit/:id')
     .post((req, res, next) => {
         /* database communication */
     })
+
+
+export { adminRouter }

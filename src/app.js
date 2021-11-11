@@ -2,6 +2,7 @@ import express from 'express';
 import Handlebars from 'express-handlebars';
 import { logger } from './util/logger.js';
 import { defaultRouter } from './routes/default.js';
+import { adminRouter } from './routes/admin.js';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import mongoose from 'mongoose';
@@ -33,6 +34,7 @@ app.set('view engine', 'handlebars')
 app.use(express.static(staticFiles))
 
 app.use('/', defaultRouter)
+app.use('/admin', adminRouter)
 
 const server = https.createServer(cred, app)
 
