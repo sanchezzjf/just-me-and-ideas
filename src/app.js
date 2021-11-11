@@ -4,8 +4,10 @@ import { logger } from './util/logger.js';
 import { defaultRouter } from './routes/default.js';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import mongoose from 'mongoose';
 import fs from 'fs';
 import https from 'https';
+import { connect } from 'http2';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const staticFiles = resolve(__dirname, '../', 'public')
@@ -23,6 +25,8 @@ const cred = {
 const PORT = process.env.PORT || 443
 const app = express()
 
+const DB = 'Site'
+
 app.engine('handlebars', Handlebars({extended: false}))
 app.set('view engine', 'handlebars')
 
@@ -36,6 +40,12 @@ const startServer = () => {
     const { address, port } = server.address()
     const protocol = 'https'
     logger.info(`App started at ${protocol}://${address}:${port}`)
+    connectDB(DB)
+}
+
+const connectDB = (db) => {
+    mongoose.connect(`mongodb://localhost:27017/${db}`)
+    .then(logger.info).catch(logger.error)
 }
 
 server.listen(PORT, startServer)
