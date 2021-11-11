@@ -1,18 +1,20 @@
-<h1>Admin Panel</h1>
-<div class="container">
-    {{#each post}}
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <h5 class="card-title">{{_doc.title}}</h5>
-            </div>
-            <div class="row">
-                <div class="card-text">{{_doc.description}}</div>
-            </div>
-            <div class="row">
-                <div class="card-text">{{_doc.content}}</div>
+<div class="container-fluid">
+    <h1>Admin Panel</h1>
+    <div class="container">
+        {{#each post}}
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <h5 class="card-title">{{_doc.title}}</h5>
+                </div>
+                <div class="row">
+                    <div class="card-text">{{_doc.description}}</div>
+                </div>
+                <div class="row">
+                    <div class="card-text">{{_doc.content}}</div>
+                </div>
             </div>
         </div>
+        {{/each}}
     </div>
-    {{/each}}
 </div>
