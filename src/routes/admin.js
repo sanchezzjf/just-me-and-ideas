@@ -13,13 +13,13 @@ adminRouter.route('/add')
         res.render('admin/addPostForm')
     })
     .post((req, res, next) => {
-        const post = {
+        const newPost = {
             title: req.body.title,
             description: req.body.description,
             content: req.body.content
         }
 
-        new PostModel(post).save()
+        new PostModel(newPost).save()
             .then(logger.info('Created post with success'))
             .catch((err) => logger.error(`Couldn't create. Error: ${err}`))
         /* Database communication */
