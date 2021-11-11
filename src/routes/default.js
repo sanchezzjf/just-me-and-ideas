@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { PostModel } from "../models/Post";
+import { PostModel } from "../models/Post.js";
 
 const defaultRouter = new Router()
 
