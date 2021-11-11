@@ -45,7 +45,7 @@ const startServer = () => {
 
 const connectDB = (db) => {
     mongoose.connect(`mongodb://localhost:27017/${db}`)
-    .then(logger.info(`Connected to ${db} with success`)).catch((err) => logger.error(`Couldn't connect: ${err}`))
+    .then(logger.info(`Connected to DB(${db}) with success`)).catch((err) => logger.error(`Couldn't connect: ${err}`))
 }
 
 server.listen(PORT, startServer)
