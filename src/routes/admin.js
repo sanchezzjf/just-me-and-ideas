@@ -5,7 +5,12 @@ import { logger } from '../util/logger.js';
 const adminRouter = new Router()
 
 adminRouter.get('/', (req, res) => {
-    res.render('admin/adminPanel')
+    PostModel.find().then((post) => {
+        res.render('admin/adminPanel', {post: post})
+    }).catch((err) => {
+        logger.error(err)
+    })
+
 })
 
 adminRouter.route('/add')
@@ -22,6 +27,7 @@ adminRouter.route('/add')
         new PostModel(newPost).save()
             .then(() => {
                 logger.info('Created post with success')
+                res.redirect('/admin')
             })
             .catch((err) => logger.error(`Couldn't create. Error: ${err}`))
         /* Database communication */
