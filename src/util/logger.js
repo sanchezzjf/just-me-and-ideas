@@ -1,7 +1,12 @@
 import { pino } from 'pino';
 
 const logger = pino({
-    prettyPrint: true
+    transport: {
+        target: 'pino-pretty',
+        options: {
+            colorize: true
+        }
+    }
 })
 
 export { logger }
