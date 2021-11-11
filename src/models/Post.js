@@ -5,10 +5,6 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    icon: {
-        type: Buffer,
-        contentType: String,
-    },
     description: {
         type: String,
         required: true,

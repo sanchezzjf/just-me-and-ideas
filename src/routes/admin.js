@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import { PostModel } from '../models/Post.js'
+import { logger } from '../util/logger.js';
 
 const adminRouter = new Router()
 
@@ -13,11 +15,13 @@ adminRouter.route('/add')
     .post((req, res, next) => {
         const post = {
             title: req.body.title,
-            icon: req.body.icon,
             description: req.body.description,
             body: req.body.body
         }
 
+        new PostModel(post).save()
+            .then(logger.info('Created post with success'))
+            .catch((err) => logger.error(`Couldn't create. Error: ${err}`))
         /* Database communication */
     })
 
