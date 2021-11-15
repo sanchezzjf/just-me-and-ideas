@@ -6,7 +6,7 @@ const adminRouter = new Router()
 
 adminRouter.get('/', (req, res) => {
     PostModel.find().then((post) => {
-        res.render('/', {post: post})
+        res.render('admin/adminPanel', {post: post})
     }).catch((err) => {
         logger.error(err)
     })
