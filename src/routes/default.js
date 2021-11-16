@@ -5,7 +5,7 @@ const defaultRouter = new Router()
 
 defaultRouter.route('/')
 .get((req, res, next) => {
-        res.render('home', {post: post})
+        res.render('home')
     /* PostModel.find().then((post) => {
     }) */
     .post((req, res) => {
