@@ -13,7 +13,9 @@ adminRouter.get('/', (req, res) => {
 
 })
 
-adminRouter.route('/add')
+adminRouter.route
+
+adminRouter.route('/add/:type')
     .get((req, res, next) => {
         res.render('admin/addPostForm')
     })
