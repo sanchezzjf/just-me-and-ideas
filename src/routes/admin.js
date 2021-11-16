@@ -13,11 +13,9 @@ adminRouter.get('/', (req, res) => {
 
 })
 
-adminRouter.route
-
-adminRouter.route('/add/:type')
+adminRouter.route('/add/post')
     .get((req, res, next) => {
-        res.render('admin/addPostForm')
+            res.render('admin/addPostForm')
     })
     .post((req, res, next) => {
         const newPost = {
