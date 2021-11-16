@@ -4,12 +4,9 @@ import { PostModel } from "../models/Post.js";
 const defaultRouter = new Router()
 
 defaultRouter.route('/')
-.get((req, res, next) => {
-        res.render('home')
-    /* PostModel.find().then((post) => {
-    }) */
-    .post((req, res) => {
-
+    .get((req, res) => {
+    PostModel.find().then((post) => {
+        res.render('home', {post: post})
     })
 })
 
