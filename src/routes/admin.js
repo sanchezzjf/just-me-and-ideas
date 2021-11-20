@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { PostModel } from '../models/Post.js'
+import { CommentModel } from '../models/Comment.js';
 import { logger } from '../util/logger.js';
 
 const adminRouter = new Router()
@@ -10,6 +11,21 @@ adminRouter.get('/', (req, res) => {
     }).catch((err) => {
         logger.error(err)
     })
+
+})
+
+adminRouter.post('/add/comment', (req, res) => {
+    const newComment = {
+        name: req.body.name,
+        comment: req.body.comment
+    }
+
+    new CommentModel(newComment).save()
+        .then(() => {
+            logger.info('Comment submited!')
+            res.redirect('/')
+        })
+        .catch((err) => logger.error(`Failed to post the comment. Error: ${err}`))
 
 })
 
