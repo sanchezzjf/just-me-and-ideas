@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { stringify } from 'querystring';
+import { logger } from '../util/logger';
 
 const spotRouter = new Router()
 
@@ -8,6 +9,7 @@ const params = {
 }
 
 spotRouter.get('/', (req, res) => {
+    logger.info('env: ${procces.env}')
     res.render('spotify/spotHome', {params: params})
 })
 
