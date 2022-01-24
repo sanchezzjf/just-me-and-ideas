@@ -9,7 +9,11 @@ const params = {
 }
 
 spotRouter.get('/', (req, res) => {
-    res.render('spotify/spotHome', params)
+    res.render('spotify/spotHome', {client_id: process.env.CLIENT_ID, redirect_uri: process.env.REDIRECT_URI})
+})
+
+spotRouter.get('/auth', (req, res) => {
+
 })
 
 export { spotRouter } 
