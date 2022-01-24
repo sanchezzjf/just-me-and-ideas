@@ -10,6 +10,7 @@ import mongoose from 'mongoose';
 import fs from 'fs';
 import https from 'https';
 import bodyParser from 'body-parser';
+import 'dotenv/config';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const staticFiles = resolve(__dirname, '../', 'public')
