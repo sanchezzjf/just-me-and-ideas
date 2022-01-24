@@ -4,8 +4,8 @@ import { logger } from '../util/logger.js';
 
 const spotRouter = new Router()
 
-const client_id = process.env.CLIENT_ID.toString()
-const redirect_uri = process.env.REDIRECT_URI.toString()
+const client_id = `${process.env.CLIENT_ID}`
+const redirect_uri = `${process.env.REDIRECT_URI}`
 
 spotRouter.get('/', (req, res) => {
     console.log(process.env.REDIRECT_URI)
