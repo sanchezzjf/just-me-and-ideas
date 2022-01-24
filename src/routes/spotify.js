@@ -15,14 +15,14 @@ spotRouter.get('/login', (req, res) => {
     res.redirect('https://accounts.spotify.com/authorize?' + 
         stringify({
             response_type: 'code',
-            client_id: client_id,
+            client_id: process.env.CLIENT_ID,
             scope: scope,
             redirect_uri: redirect_uri,
         }))
 })
 
 spotRouter.get('/auth', (req, res) => {
-
+    res.send('redirected')
 })
 
 export { spotRouter } 
