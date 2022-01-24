@@ -1,4 +1,5 @@
-import { request, Router } from 'express';
+import { Router } from 'express';
+import { request } from 'request';
 import { stringify } from 'querystring';
 
 const spotRouter = new Router()
@@ -38,7 +39,7 @@ spotRouter.get('/auth', (req, res) => {
         },
         json: true
     }
-
+    
     request.post(authOptions, (err, res, body) => {
         if(!err && res.statusCode === 200){
             const access_token = body.access_token
@@ -47,7 +48,7 @@ spotRouter.get('/auth', (req, res) => {
             const options = {
                 url: 'https://api.spotify.com/v1/me',
                 headers: {
-                    'Authorization': 'Bearer' + access_token
+                    'Authorization': 'Bearer' + access_token,
                 },
                 json: true
             }
