@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { request } from 'request';
+import request from 'request';
 import { stringify } from 'querystring';
 
 const spotRouter = new Router()
