@@ -1,5 +1,8 @@
 <div>
     <h1>Spotify</h1>
-    <div>{{params}}</div>
-    <a href="/spotify/login"><button class="btn btn-success" id="login">Log in</button></a><!-- redirect /auth -->
+    {{#if access_token}}
+        <h1>Welcome!</h1>
+    {{else}}
+        <a href="/spotify/login"><button class="btn btn-success" id="login">Log in</button></a><!-- redirect /auth -->
+    {{/if}}
 </div>
