@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { request } from 'http';
 import { stringify } from 'querystring';
 
 const spotRouter = new Router()
@@ -39,7 +38,6 @@ spotRouter.get('/auth', (req, res) => {
         },
         json: true
     }
-    request(authOptions)
 })
 
 export { spotRouter } 
