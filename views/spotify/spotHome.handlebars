@@ -1,7 +1,7 @@
 <div>
     <h1>Spotify</h1>
     {{#each params}}
-    <div>{{client_id}}</div>
+    <div>{{params.client_id}}</div>
     {{/each}}
     <button class="btn btn-success" id="login" onclick="redirect({{params}})">Log in</button><!-- redirect /auth -->
     <script>
