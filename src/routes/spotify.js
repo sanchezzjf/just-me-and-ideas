@@ -9,6 +9,7 @@ const params = {
 }
 
 spotRouter.get('/', (req, res) => {
+    console.log(process.env.REDIRECT_URI)
     res.render('spotify/spotHome', {client_id: process.env.CLIENT_ID, redirect_uri: process.env.REDIRECT_URI})
 })
 
