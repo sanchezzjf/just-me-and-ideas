@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { stringify } from 'querystring';
-import { logger } from '../util/logger';
+import { logger } from '../util/logger.js';
 
 const spotRouter = new Router()
 
