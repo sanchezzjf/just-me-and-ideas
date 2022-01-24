@@ -1,7 +1,5 @@
 import { Router } from 'express';
-import { connected } from 'process';
 import { stringify } from 'querystring';
-import { logger } from '../util/logger.js';
 
 const spotRouter = new Router()
 
@@ -16,7 +14,7 @@ spotRouter.get('/', (req, res) => {
 spotRouter.get('/login', (req, res) => {
     res.redirect('https://accounts.spotify.com/authorize?' + 
         stringify({
-            response_type: code,
+            response_type: 'code',
             client_id: client_id,
             scope: scope,
             redirect_uri: redirect_uri,
