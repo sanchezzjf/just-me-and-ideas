@@ -4,13 +4,12 @@ import { logger } from '../util/logger.js';
 
 const spotRouter = new Router()
 
-const params = {
-    client_id: process.env.CLIENT_ID
-}
+const client_id = process.env.CLIENT_ID.toString()
+const redirect_uri = process.env.REDIRECT_URI.toString()
 
 spotRouter.get('/', (req, res) => {
     console.log(process.env.REDIRECT_URI)
-    res.render('spotify/spotHome', {client_id: process.env.CLIENT_ID, redirect_uri: process.env.REDIRECT_URI})
+    res.render('spotify/spotHome', {client_id: client_id, redirect_uri: redirect_uri})
 })
 
 spotRouter.get('/auth', (req, res) => {
