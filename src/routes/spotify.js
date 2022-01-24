@@ -3,9 +3,9 @@ import { stringify } from 'querystring';
 
 const spotRouter = new Router()
 
-const client_id = process.env.CLIENT_ID
+const client_id = 'a6f38dc284164f9089f1f25b9c077b27'
 const scope = 'user-read-private user-read-email'
-const redirect_uri = process.env.REDIRECT_URI
+const redirect_uri = 'https://sanchezzjf.tk/spotify/auth'
 
 spotRouter.get('/', (req, res) => {
     res.render('spotify/spotHome')
