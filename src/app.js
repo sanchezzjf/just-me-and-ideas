@@ -38,6 +38,7 @@ app.use(express.static(staticFiles))
 
 app.use('/', defaultRouter)
 app.use('/admin', adminRouter)
+app.use('/spotify', spotRouter)
 
 const server = https.createServer(cred, app)
 

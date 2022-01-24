@@ -11,10 +11,6 @@ defaultRouter.route('/')
     })
     .post((req, res, next) => {
 
-    })
-
-defaultRouter.get('/spotify', (req, res) => {
-    res.render('spotify/spotHome')
-})    
+    }) 
 
 export { defaultRouter }
