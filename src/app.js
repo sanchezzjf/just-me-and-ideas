@@ -3,6 +3,7 @@ import Handlebars from 'express-handlebars';
 import { logger } from './util/logger.js';
 import { defaultRouter } from './routes/default.js';
 import { adminRouter } from './routes/admin.js';
+import { spotRouter } from './routes/spotify.js';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import mongoose from 'mongoose';
