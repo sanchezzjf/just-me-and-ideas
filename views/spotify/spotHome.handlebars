@@ -1,9 +1,9 @@
 <div>
     <h1>Spotify</h1>
-    <button class="btn btn-success" id="login" onclick="redirect()">Log in</button><!-- redirect /auth -->
+    <button class="btn btn-success" id="login" onclick="redirect({{params}})">Log in</button><!-- redirect /auth -->
     <script>
-        function redirect(){
-            window.location = 'https://accounts.spotify.com/authorize?{{params}}'
+        function redirect(params){
+            window.location = 'https://accounts.spotify.com/authorize?client_id=${params.client_id}'
         }
     </script>
 </div>
