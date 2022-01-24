@@ -9,7 +9,7 @@ const params = {
 }
 
 spotRouter.get('/', (req, res) => {
-    logger.info(`env: ${procces.env}`)
+    logger.info(`env: ${process.env}`)
     res.render('spotify/spotHome', {params: params})
 })
 
