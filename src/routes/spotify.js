@@ -41,27 +41,28 @@ spotRouter.route('/auth')
                 },
                 json: true
             }
-        http.request(authOptions, (err, res, body) => {
-            if (!err && res.statusCode === 200) {
+            http.request(authOptions, (err, res, body) => {
+                if (!err && res.statusCode === 200) {
 
-                var access_token = body.access_token,
-                    refresh_token = body.refresh_token;
-        
-                var options = {
-                  url: 'https://api.spotify.com/v1/me',
-                  headers: { 'Authorization': 'Bearer ' + access_token },
-                  json: true
-                };
-        
-        }
+                    var access_token = body.access_token,
+                        refresh_token = body.refresh_token;
             
+                    var options = {
+                    url: 'https://api.spotify.com/v1/me',
+                    headers: { 'Authorization': 'Bearer ' + access_token },
+                    json: true
+                    }
+            
+                }
+                
+            })
         })
         .post((req, res, next) => {
             const code = req.query.code || null
             const state = req.query.state || null
             
         })
-
+/* 
         if(!err && res.statusCode === 200){
             const access_token = body.access_token
             const refresh_token = body.refresh_token
@@ -79,7 +80,7 @@ spotRouter.route('/auth')
         res.redirect('/spotify' + stringify({
             access_token: access_token,
             refresh_token: refresh_token
-        }))
+        })) */
 
 
 export { spotRouter } 
