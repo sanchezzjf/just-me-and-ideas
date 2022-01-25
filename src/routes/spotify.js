@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { stringify } from 'querystring';
 import { sendAuthOptions } from '../config/spotAuth.js';
+import { logger } from '../util/logger.js';
 
 const spotRouter = new Router()
 
@@ -12,6 +13,7 @@ const auth = ''
 
 spotRouter.get('/', (req, res, next) => {
     res.render('spotify/spotHome')
+    logger.info(`${client_secret}`)
 })
 
 spotRouter.get('/login', (req, res) => {
