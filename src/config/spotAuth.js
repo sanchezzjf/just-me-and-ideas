@@ -1,6 +1,6 @@
 import http from 'http';
 
-const sendAuthOptions = async (code) =>{
+const sendAuthOptions = async (code, redirect_uri, client_id, client_secret) =>{
 
     const authOptions = {
         url: 'https://accounts.spotify.com/api/token',
@@ -16,7 +16,7 @@ const sendAuthOptions = async (code) =>{
         json: true
     }
     http.request(authOptions, (err, res, body) => {
-        console.log(req.body)
+        console.log(res.body)
     })
 }
 

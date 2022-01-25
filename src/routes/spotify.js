@@ -30,7 +30,7 @@ spotRouter.route('/auth')
             const code = req.query.code || null
             const state = req.query.state || null
 
-            sendAuthOptions(code)
+            sendAuthOptions(code, redirect_uri, client_id, client_secret)
         
             const authOptions = {
                 method:'POST',
