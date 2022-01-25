@@ -42,19 +42,19 @@ spotRouter.route('/auth')
             authOptions.append('json',`true`)
 
             res.send(`code:${code}, state:${state}`)
-            axios.post(url,authOptions, {
+            const getAccessToken = axios.post(url,authOptions, {
                 headers: {
                     'Content-Type':'application/x-www-form-urlencoded',
                     'Authorization': 'Basic ' + (Buffer(client_id + ':'+ client_secret).toString('base64'))
                 },
-            }).then(getAccessToken = (res) => {
+            }).then((res) => {
                 const access_token = res.data.access_token
                 console.log(res.data.access_token)
                 return access_token
             }).catch((err) => {
                 logger.error(`err: ${err}`)
             })
-            logger.info(`${access_token}`)
+            logger.info(`${getAccessToken}`)
         })
         .post((req, res, next) => {
             const code = req.query.code || null
