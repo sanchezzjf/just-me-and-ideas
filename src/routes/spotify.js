@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import http from 'http';
 import { stringify } from 'querystring';
 import { sendAuthOptions } from '../config/spotAuth.js';
 
@@ -12,8 +11,9 @@ const client_secret = process.env.CLIENT_SECRET
 const auth = ''
 
 spotRouter.get('/', (req, res) => {
-    res.render('spotify/spotHome', () => {
+    res.render('spotify/spotHome', (next) => {
         console.log(client_secret)
+        next()
     })
 })
 
