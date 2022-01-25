@@ -42,8 +42,7 @@ spotRouter.route('/auth')
                     grant_type: 'authorization_code',
                 },
                 headers: {
-                    'Authorization': 'Basic' + (Buffer(client_id + ':'+ client_secret).toString('base64')),
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Authorization': 'Basic' + (Buffer(client_id + ':'+ client_secret).toString('base64'))
                 },
                 json: true
             }
