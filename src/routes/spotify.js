@@ -26,16 +26,12 @@ spotRouter.get('/login', (req, res) => {
         }))
 })
 
-spotRouter.route('/auth', (req, res, next) => {
-    const code = req.query.code || null
-    const state = req.query.state || null
-    
-    logger.info(`${code}`)
-    next()
-})
+spotRouter.route('/auth')
         .get((req, res) => {
 
             //sendAuthOptions(code, redirect_uri, auth)
+            const code = req.query.code || null
+            const state = req.query.state || null
         
             const authOptions = {
                 method:'POST',
@@ -70,6 +66,8 @@ spotRouter.route('/auth', (req, res, next) => {
         .post((req, res, next) => {
             const code = req.query.code || null
             const state = req.query.state || null   
+            logger.info(`code: ${code}`)
+            logger.info(`state ${state}`)
         })
 /* 
         if(!err && res.statusCode === 200){
