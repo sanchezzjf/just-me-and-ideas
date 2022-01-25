@@ -50,7 +50,9 @@ spotRouter.route('/auth')
                     },
                 }).then(res => res.data)
             }
-            console.log(getAccessToken())
+            getAccessToken().then((data) => {
+                console.log(data)
+            })
            /*  getAccessToken().then((res) => {
                 const access_token = res.data.access_token
                 console.log(res.data.access_token)
