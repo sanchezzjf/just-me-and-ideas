@@ -49,7 +49,7 @@ spotRouter.route('/auth')
                 },
                 json: true
             } */
-            res.send(`${code}, ${state}`)
+            res.send(`code:${code}, state:${state}`)
             axios.post(url,authOptions, {
                 headers: {
                     'Content-Type':'application/x-www-form-urlencoded',
