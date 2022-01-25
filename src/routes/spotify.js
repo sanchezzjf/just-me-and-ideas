@@ -41,7 +41,7 @@ spotRouter.route('/auth')
                 },
                 json: true
             }
-            res.send(`${authOptions.toJSON('json')}`)
+            res.send(`${code}, ${state}`)
             /* http.request(authOptions, (err, res, body) => {
                 if (!err && res.statusCode === 200) {
 
