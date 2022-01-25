@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { stringify } from 'querystring';
-import { sendAuthOptions } from '../config/spotAuth.js';
+import { getAccessToken } from '../config/spotAuth.js';
 import { logger } from '../util/logger.js';
 import axios from 'axios';
 
@@ -33,34 +33,17 @@ spotRouter.route('/auth')
             //sendAuthOptions(code, redirect_uri, auth)
             const code = req.query.code || null
             const state = req.query.state || null
-            const url = 'https://accounts.spotify.com/api/token'
         
             const authOptions = new URLSearchParams()
             authOptions.append('code',`${code}`)
             authOptions.append('redirect_uri',`${redirect_uri}`)
             authOptions.append('grant_type',`authorization_code`)
             authOptions.append('json',`true`)
-
+            
             res.send(`code:${code}, state:${state}`)
-            function getAccessToken(){
-                return axios.post(url,authOptions, {
-                    headers: {
-                        'Content-Type':'application/x-www-form-urlencoded',
-                        'Authorization': 'Basic ' + (Buffer(client_id + ':'+ client_secret).toString('base64'))
-                    },
-                }).then(res => res.data)
-            }
-            getAccessToken().then((data) => {
-                console.log(data)
+            getAccessToken(url, authOptions, client_id, client_secret).then((data) => {
+                logger.info(`${data}`)
             })
-           /*  getAccessToken().then((res) => {
-                const access_token = res.data.access_token
-                console.log(res.data.access_token)
-                return access_token
-            }).catch((err) => {
-                logger.error(`err: ${err}`)
-            })
-            logger.info(`${getAccessToken}`) */
         })
         .post((req, res, next) => {
             const code = req.query.code || null

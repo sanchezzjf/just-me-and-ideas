@@ -1,22 +1,14 @@
 import axios from 'axios';
 
-const sendAuthOptions = async (code, redirect_uri, auth) =>{
+const url = 'https://accounts.spotify.com/api/token'
 
-    const authOptions = {
-        url: 'https://accounts.spotify.com/api/token',
-        form: {
-            code: code,
-            redirect_uri: redirect_uri,
-            grant_type: 'authorization_code',
-        },
+const getAccessToken = (url, authOptions, client_id, client_secret) => {
+    return axios.post(url,authOptions, {
         headers: {
-            'Authorization': 'Basic' + `${auth}`
+            'Content-Type':'application/x-www-form-urlencoded',
+            'Authorization': 'Basic ' + (Buffer(client_id + ':'+ client_secret).toString('base64'))
         },
-        json: true
-    }
-    axios.post(authOptions, (err, res, body) => {
-        console.log(res.body)
-    })
+    }).then(res => res.data)
 }
 
-export { sendAuthOptions }
+export { getAccessToken }
