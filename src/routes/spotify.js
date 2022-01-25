@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import http from 'http';
 import { stringify } from 'querystring';
+import { sendAuthOptions } from '../config/spotAuth.js';
 
 const spotRouter = new Router()
 
@@ -28,6 +29,8 @@ spotRouter.route('/auth')
         .get((req, res) => {
             const code = req.query.code || null
             const state = req.query.state || null
+
+            sendAuthOptions(code)
         
             const authOptions = {
                 method:'POST',
