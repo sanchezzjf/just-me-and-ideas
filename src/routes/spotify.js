@@ -47,7 +47,11 @@ spotRouter.route('/auth')
                 json: true
             }
             res.send(`${code}, ${state}`)
-            axios.post(url,authOptions)/* .then((res, body) => {
+            axios.post(url,authOptions, {
+                headers: {
+                    'Content-Type':'application/x-www-form-urlencoded'
+                }
+            })/* .then((res, body) => {
                 console.log(res.body)
             }).catch((err) => {
                 logger.error(`err: ${err}`)
