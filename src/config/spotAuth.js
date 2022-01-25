@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const sendAuthOptions = async (code, redirect_uri, client_id, client_secret) =>{
+const sendAuthOptions = async (code, redirect_uri, auth) =>{
 
     const authOptions = {
         url: 'https://accounts.spotify.com/api/token',
@@ -11,7 +11,7 @@ const sendAuthOptions = async (code, redirect_uri, client_id, client_secret) =>{
             grant_type: 'authorization_code',
         },
         headers: {
-            'Authorization': 'Basic' + (client_id + ':'+ client_secret).toString('base64')
+            'Authorization': 'Basic' + auth
         },
         json: true
     }
