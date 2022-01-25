@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import http from 'http';
 import { stringify } from 'querystring';
 
 const spotRouter = new Router()
@@ -22,24 +23,45 @@ spotRouter.get('/login', (req, res) => {
         }))
 })
 
-spotRouter.get('/auth', (req, res) => {
-    const code = req.query.code || null
-    const state = req.query.state || null
+spotRouter.route('/auth')
+        .get((req, res) => {
+            const code = req.query.code || null
+            const state = req.query.state || null
+        
+            const authOptions = {
+                method:'POST',
+                url: 'https://accounts.spotify.com/api/token',
+                form: {
+                    code: code,
+                    redirect_uri: redirect_uri,
+                    grant_type: 'authorization_code',
+                },
+                headers: {
+                    'Authorization': 'Basic' + (client_id + ':'+ client_secret).toString('base64')
+                },
+                json: true
+            }
+        http.request(authOptions, (err, res, body) => {
+            if (!err && res.statusCode === 200) {
 
-    const authOptions = {
-        url: 'https://accounts.spotify.com/api/token',
-        form: {
-            code: code,
-            redirect_uri: redirect_uri,
-            grant_type: 'authorization_code',
-        },
-        headers: {
-            'Authorization': 'Basic' + (new Buffer(client_id + ':'+ client_secret).toString('base64'))
-        },
-        json: true
-    }
-    
-    request.post(authOptions, (err, res, body) => {
+                var access_token = body.access_token,
+                    refresh_token = body.refresh_token;
+        
+                var options = {
+                  url: 'https://api.spotify.com/v1/me',
+                  headers: { 'Authorization': 'Bearer ' + access_token },
+                  json: true
+                };
+        
+        }
+            
+        })
+        .post((req, res, next) => {
+            const code = req.query.code || null
+            const state = req.query.state || null
+            
+        })
+
         if(!err && res.statusCode === 200){
             const access_token = body.access_token
             const refresh_token = body.refresh_token
@@ -52,15 +74,12 @@ spotRouter.get('/auth', (req, res) => {
                 json: true
             }
         }
-        request.get(options, function(err, res, body) {
-            console.log(body);
-        })
+        console.log(req.body)
 
         res.redirect('/spotify' + stringify({
             access_token: access_token,
             refresh_token: refresh_token
         }))
-    })
-})
+
 
 export { spotRouter } 
