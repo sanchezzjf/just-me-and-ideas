@@ -52,9 +52,6 @@ spotRouter.route('/auth')
                 const data = promise.then((res)=>res.data)
                 return data
             }
-            console.log(getAccessToken().then(data => {
-                
-            })
            /*  getAccessToken().then((res) => {
                 const access_token = res.data.access_token
                 console.log(res.data.access_token)
