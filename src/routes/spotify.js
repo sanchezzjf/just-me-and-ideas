@@ -5,15 +5,14 @@ import { logger } from '../util/logger.js';
 
 const spotRouter = new Router()
 
-const client_id = 'a6f38dc284164f9089f1f25b9c077b27'
+const client_id = process.env.CLIENT_ID
 const scope = 'user-read-private user-read-email'
-const redirect_uri = 'https://sanchezzjf.tk/spotify/auth'
+const redirect_uri = proccess.env.REDIRECT_URI
 const client_secret = process.env.CLIENT_SECRET
-const auth = ''
+
 
 spotRouter.get('/', (req, res, next) => {
     res.render('spotify/spotHome')
-    logger.info(`${client_secret}`)
 })
 
 spotRouter.get('/login', (req, res) => {
@@ -27,10 +26,13 @@ spotRouter.get('/login', (req, res) => {
         }))
 })
 
-spotRouter.route('/auth')
+spotRouter.route('/auth', (req, res, next) => {
+    const code = req.query.code || null
+    const state = req.query.state || null
+    
+    logger.info(`${code}`)
+})
         .get((req, res) => {
-            const code = req.query.code || null
-            const state = req.query.state || null
 
             //sendAuthOptions(code, redirect_uri, auth)
         
