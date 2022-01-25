@@ -4,7 +4,6 @@ const sendAuthOptions = async (code, redirect_uri, auth) =>{
 
     const authOptions = {
         url: 'https://accounts.spotify.com/api/token',
-        method:'POST',
         form: {
             code: code,
             redirect_uri: redirect_uri,
