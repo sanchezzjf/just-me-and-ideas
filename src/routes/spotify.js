@@ -41,7 +41,7 @@ spotRouter.route('/auth')
             
             res.send(`code:${code}, state:${state}`)
             getAccessToken(authOptions, client_id, client_secret).then((data) => {
-                logger.info(`${data}`)
+                logger.info(`${data.access_token}`)
             })
         })
         .post((req, res, next) => {
