@@ -9,7 +9,7 @@ const client_id = 'a6f38dc284164f9089f1f25b9c077b27'
 const scope = 'user-read-private user-read-email'
 const redirect_uri = 'https://sanchezzjf.tk/spotify/auth'
 const client_secret = process.env.CLIENT_SECRET
-const auth = new Buffer(`${client_id}:${client_secret}`).toString('base64')
+const auth = new Buffer(`YTZmMzhkYzI4NDE2NGY5MDg5ZjFmMjViOWMwNzdiMjc6NzllNjcyOTBmNGE4NDUyYWI3MjMzMzYzMGEzNzdlZGQ`)
 
 spotRouter.get('/', (req, res) => {
     res.render('spotify/spotHome')
