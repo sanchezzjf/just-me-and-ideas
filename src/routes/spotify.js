@@ -7,7 +7,7 @@ const spotRouter = new Router()
 
 const client_id = process.env.CLIENT_ID
 const scope = 'user-read-private user-read-email'
-const redirect_uri = proccess.env.REDIRECT_URI
+const redirect_uri = process.env.REDIRECT_URI
 const client_secret = process.env.CLIENT_SECRET
 
 
