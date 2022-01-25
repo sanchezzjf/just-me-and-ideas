@@ -42,12 +42,12 @@ spotRouter.route('/auth')
                     grant_type: 'authorization_code',
                 },
                 headers: {
-                    'Authorization': 'Basic' + Buffer(client_id + ':'+ client_secret).toString('base64')
+                    'Authorization': 'Basic' + (Buffer(client_id + ':'+ client_secret).toString('base64'))
                 },
                 json: true
             }
             res.send(`${code}, ${state}`)
-            axios.post(url, authOptions).then((res, body) => {
+            axios.post(url,authOptions).then((res, body) => {
                 console.log(res.body)
             }).catch((err) => {
                 logger.error(`err: ${err}`)
