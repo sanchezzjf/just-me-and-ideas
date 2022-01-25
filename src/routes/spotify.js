@@ -42,7 +42,7 @@ spotRouter.route('/auth')
                 },
                 json: true
             }
-            //res.send(`${code}, ${state}`)
+            res.send(`${code}, ${state}`)
             /* http.request(authOptions, (err, res, body) => {
                 if (!err && res.statusCode === 200) {
 
@@ -61,10 +61,7 @@ spotRouter.route('/auth')
         })
         .post((req, res, next) => {
             const code = req.query.code || null
-            const state = req.query.state || null
-            
-            res.json({code: code, state: state})
-            
+            const state = req.query.state || null   
         })
 /* 
         if(!err && res.statusCode === 200){
