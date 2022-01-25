@@ -41,15 +41,13 @@ spotRouter.route('/auth')
                     redirect_uri: redirect_uri,
                     grant_type: 'authorization_code',
                 },
-                headers: {
-                    'Authorization': 'Basic' + (Buffer(client_id + ':'+ client_secret).toString('base64'))
-                },
                 json: true
             }
             res.send(`${code}, ${state}`)
             axios.post(url,authOptions, {
                 headers: {
-                    'Content-Type':'application/x-www-form-urlencoded'
+                    'Content-Type':'application/x-www-form-urlencoded',
+                    'Authorization': 'Basic' + (Buffer(client_id + ':'+ client_secret).toString('base64'))
                 }
             })/* .then((res, body) => {
                 console.log(res.body)
