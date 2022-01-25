@@ -55,6 +55,9 @@ spotRouter.route('/auth')
                     'Content-Type':'application/x-www-form-urlencoded',
                     'Authorization': 'Basic ' + (Buffer(client_id + ':'+ client_secret).toString('base64'))
                 },
+            }, (err, res, body) => {
+                logger.error(`err: ${err}`)
+                res.send(`${body}`)
             }).then((res) => {
                 logger.info(`${res.query}, ${res.body}, ${res.params}`)
             }).catch((err) => {
