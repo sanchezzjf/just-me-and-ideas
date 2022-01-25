@@ -11,7 +11,7 @@ const sendAuthOptions = async (code, redirect_uri, auth) =>{
             grant_type: 'authorization_code',
         },
         headers: {
-            'Authorization': 'Basic' + `${new ReadableStream(auth)}`
+            'Authorization': 'Basic' + `${new Buffer(auth)}`
         },
         json: true
     }
