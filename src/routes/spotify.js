@@ -10,7 +10,7 @@ const redirect_uri = 'https://sanchezzjf.tk/spotify/auth'
 const client_secret = process.env.CLIENT_SECRET
 const auth = ''
 
-spotRouter.get('/', (req, res) => {
+spotRouter.get('/', (req, res, next) => {
     res.render('spotify/spotHome', (next) => {
         console.log(client_secret)
         next()
