@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { stringify } from 'querystring';
-import { getAccessToken } from '../config/spotAuth.js';
+import { getAccessToken } from '../helpers/spotAuth.js';
 import { logger } from '../util/logger.js';
 import axios from 'axios';
 
@@ -10,7 +10,6 @@ const client_id = process.env.CLIENT_ID
 const scope = 'user-read-private user-read-email'
 const redirect_uri = process.env.REDIRECT_URI
 const client_secret = process.env.CLIENT_SECRET
-
 
 spotRouter.get('/', (req, res, next) => {
     res.render('spotify/spotHome')
@@ -41,7 +40,7 @@ spotRouter.route('/auth')
             authOptions.append('json',`true`)
             
             res.send(`code:${code}, state:${state}`)
-            getAccessToken(url, authOptions, client_id, client_secret).then((data) => {
+            getAccessToken(authOptions, client_id, client_secret).then((data) => {
                 logger.info(`${data}`)
             })
         })
