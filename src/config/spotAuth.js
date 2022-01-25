@@ -1,4 +1,4 @@
-import http from 'http';
+import axios from 'axios';
 
 const sendAuthOptions = async (code, redirect_uri, client_id, client_secret) =>{
 
@@ -15,7 +15,7 @@ const sendAuthOptions = async (code, redirect_uri, client_id, client_secret) =>{
         },
         json: true
     }
-    http.request(authOptions, (err, res, body) => {
+    axios.post(authOptions, (err, res, body) => {
         console.log(res.body)
     })
 }
