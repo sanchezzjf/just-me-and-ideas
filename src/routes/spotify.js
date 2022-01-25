@@ -42,7 +42,7 @@ spotRouter.route('/auth')
                     grant_type: 'authorization_code',
                 },
                 headers: {
-                    'Authorization': 'Basic' + (client_id + ':'+ client_secret).toString('base64')
+                    'Authorization': 'Basic' + Buffer(client_id + ':'+ client_secret).toString('base64')
                 },
                 json: true
             }
