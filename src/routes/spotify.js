@@ -40,41 +40,21 @@ spotRouter.route('/auth')
             authOptions.append('redirect_uri',`${redirect_uri}`)
             authOptions.append('grant_type',`authorization_code`)
             authOptions.append('json',`true`)
-            
-            /* {
-                form: {
-                    code: code,
-                    redirect_uri: redirect_uri,
-                    grant_type: 'authorization_code',
-                },
-                json: true
-            } */
+
             res.send(`code:${code}, state:${state}`)
             axios.post(url,authOptions, {
                 headers: {
                     'Content-Type':'application/x-www-form-urlencoded',
                     'Authorization': 'Basic ' + (Buffer(client_id + ':'+ client_secret).toString('base64'))
                 },
-            }).then((res) => {
+            }).then(getAccessToken = (res) => {
+                const access_token = res.data.access_token
                 console.log(res.data.access_token)
+                return access_token
             }).catch((err) => {
                 logger.error(`err: ${err}`)
             })
-            /* http.request(authOptions, (err, res, body) => {
-                if (!err && res.statusCode === 200) {
-
-                    var access_token = body.access_token,
-                        refresh_token = body.refresh_token;
-            
-                    var options = {
-                    url: 'https://api.spotify.com/v1/me',
-                    headers: { 'Authorization': 'Bearer ' + access_token },
-                    json: true
-                    }
-            
-                }
-                
-            }) */
+            logger.info(`${access_token}`)
         })
         .post((req, res, next) => {
             const code = req.query.code || null
