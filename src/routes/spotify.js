@@ -49,11 +49,11 @@ spotRouter.route('/auth')
                     'Content-Type':'application/x-www-form-urlencoded',
                     'Authorization': 'Basic' + (Buffer(client_id + ':'+ client_secret).toString('base64'))
                 }
-            }).then((res, body) => {
+            })/* .then((res, body) => {
                 console.log(res.body)
             }).catch((err) => {
                 logger.error(`err: ${err}`)
-            })
+            }) */
             /* http.request(authOptions, (err, res, body) => {
                 if (!err && res.statusCode === 200) {
 
