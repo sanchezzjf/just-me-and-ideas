@@ -42,7 +42,7 @@ spotRouter.route('/auth')
             authOptions.append('json',`true`)
 
             res.send(`code:${code}, state:${state}`)
-            async function getAccessToken(){
+            function getAccessToken(){
                 const promise = axios.post(url,authOptions, {
                     headers: {
                         'Content-Type':'application/x-www-form-urlencoded',
@@ -52,7 +52,9 @@ spotRouter.route('/auth')
                 const data = promise.then((res)=>res.data)
                 return data
             }
-            console.log(getAccessToken())
+            console.log(getAccessToken().then(data => {
+                
+            })
            /*  getAccessToken().then((res) => {
                 const access_token = res.data.access_token
                 console.log(res.data.access_token)
