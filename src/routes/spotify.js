@@ -12,7 +12,9 @@ const client_secret = process.env.CLIENT_SECRET
 const auth = ''
 
 spotRouter.get('/', (req, res) => {
-    res.render('spotify/spotHome')
+    res.render('spotify/spotHome', () => {
+        console.log(client_secret)
+    })
 })
 
 spotRouter.get('/login', (req, res) => {
