@@ -35,7 +35,7 @@ spotRouter.route('/auth')
             const state = req.query.state || null
             const url = 'https://accounts.spotify.com/api/token'
         
-            const authOptions = new URLSearchParams({
+            const authOptions = stringify({
                 form: {
                     code: code,
                     redirect_uri: redirect_uri,
