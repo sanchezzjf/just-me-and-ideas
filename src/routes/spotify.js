@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { stringify } from 'querystring';
 import { sendAuthOptions } from '../config/spotAuth.js';
 import { logger } from '../util/logger.js';
+import axios from 'axios';
 
 const spotRouter = new Router()
 
