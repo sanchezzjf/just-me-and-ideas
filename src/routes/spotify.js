@@ -34,7 +34,6 @@ spotRouter.route('/auth')
             const state = req.query.state || null
         
             const authOptions = {
-                method:'POST',
                 url: 'https://accounts.spotify.com/api/token',
                 form: {
                     code: code,
@@ -47,6 +46,9 @@ spotRouter.route('/auth')
                 json: true
             }
             res.send(`${code}, ${state}`)
+            axios.post(authOptions, (err, res, body) => {
+                console.log(res.body)
+            })
             /* http.request(authOptions, (err, res, body) => {
                 if (!err && res.statusCode === 200) {
 
