@@ -58,6 +58,7 @@ spotRouter.route('/auth')
             }, (err, res, body) => {
                 logger.error(`err: ${err}`)
                 res.send(`${body}`)
+                logger.info(`${body}`)
             }).then((res) => {
                 logger.info(`${res.query}, ${res.body}, ${res.params}`)
             }).catch((err) => {
