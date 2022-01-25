@@ -53,7 +53,7 @@ spotRouter.route('/auth')
             axios.post(url,authOptions, {
                 headers: {
                     'Content-Type':'application/x-www-form-urlencoded',
-                    'Authorization': 'Basic' + (Buffer(client_id + ':'+ client_secret).toString('base64'))
+                    'Authorization': 'Basic ' + (Buffer(client_id + ':'+ client_secret).toString('base64'))
                 },
             })/* .then((res, body) => {
                 console.log(res.body)
