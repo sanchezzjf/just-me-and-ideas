@@ -59,11 +59,11 @@ spotRouter.route('/auth')
                 logger.error(`err: ${err}`)
                 res.send(`${body}`)
                 logger.info(`${body}`)
-            }).then((res) => {
+            })/* .then((res) => {
                 logger.info(`${res.query}, ${res.body}, ${res.params}`)
             }).catch((err) => {
                 logger.error(`err: ${err}`)
-            })
+            }) */
             /* http.request(authOptions, (err, res, body) => {
                 if (!err && res.statusCode === 200) {
 
