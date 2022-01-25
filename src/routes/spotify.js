@@ -56,7 +56,7 @@ spotRouter.route('/auth')
                     'Authorization': 'Basic ' + (Buffer(client_id + ':'+ client_secret).toString('base64'))
                 },
             }).then((res) => {
-                console.log(res.data)
+                console.log(res.data.access_token)
             }).catch((err) => {
                 logger.error(`err: ${err}`)
             })
