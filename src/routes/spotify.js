@@ -41,7 +41,7 @@ spotRouter.route('/auth')
                 },
                 json: true
             }
-            http.request(authOptions, (err, res, body) => {
+            /* http.request(authOptions, (err, res, body) => {
                 if (!err && res.statusCode === 200) {
 
                     var access_token = body.access_token,
@@ -55,11 +55,12 @@ spotRouter.route('/auth')
             
                 }
                 
-            })
+            }) */
         })
         .post((req, res, next) => {
             const code = req.query.code || null
             const state = req.query.state || null
+            console.log(code, state)
             
         })
 /* 
