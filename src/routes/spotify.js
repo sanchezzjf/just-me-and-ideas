@@ -31,6 +31,7 @@ spotRouter.route('/auth', (req, res, next) => {
     const state = req.query.state || null
     
     logger.info(`${code}`)
+    next()
 })
         .get((req, res) => {
 
