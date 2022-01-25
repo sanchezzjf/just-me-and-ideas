@@ -47,8 +47,10 @@ spotRouter.route('/auth')
                 json: true
             }
             res.send(`${code}, ${state}`)
-            axios.post(authOptions, (err, res, body) => {
+            axios.post(authOptions).then((res, body) => {
                 console.log(res.body)
+            }).catch((err) => {
+                logger.error(`err: ${err}`)
             })
             /* http.request(authOptions, (err, res, body) => {
                 if (!err && res.statusCode === 200) {
