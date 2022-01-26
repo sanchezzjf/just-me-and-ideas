@@ -2,7 +2,6 @@ import { Router } from 'express';
 import { stringify } from 'querystring';
 import { getAccessToken } from '../helpers/spotAuth.js';
 import { logger } from '../util/logger.js';
-import axios from 'axios';
 
 const spotRouter = new Router()
 
@@ -42,6 +41,9 @@ spotRouter.route('/auth')
             res.send(`code:${code}, state:${state}`)
             getAccessToken(authOptions, client_id, client_secret).then((data) => {
                 logger.info(`${data.access_token}`)
+                //res.cookie('session_user', data.id)
+                res.cookie('access_token', data.access_token)
+                res.cookie('refresh_token', data.refresh_token)
             })
         })
         .post((req, res, next) => {
