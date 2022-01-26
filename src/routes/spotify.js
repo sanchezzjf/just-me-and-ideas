@@ -38,7 +38,6 @@ spotRouter.route('/auth')
             authOptions.append('grant_type',`authorization_code`)
             authOptions.append('json',`true`)
             
-            res.send(`code:${code}, state:${state}`)
             getAccessToken(authOptions, client_id, client_secret).then((data) => {
                 logger.info(`${data.access_token}`)
                 const access_token = data.access_token
