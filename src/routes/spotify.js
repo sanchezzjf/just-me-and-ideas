@@ -41,10 +41,10 @@ spotRouter.route('/auth')
             
             getAccessToken(authOptions, client_id, client_secret).then((data) => {
                 logger.info(`${data.access_token}`)
-                const access_token = data.access_token
+                /* const access_token = data.access_token
                 if(access_token){
-                    //res.cookie(access_token)
-                }
+                    res.cookie(access_token)
+                } */
             })
         })
         .post((req, res, next) => {
