@@ -41,9 +41,10 @@ spotRouter.route('/auth')
             res.send(`code:${code}, state:${state}`)
             getAccessToken(authOptions, client_id, client_secret).then((data) => {
                 logger.info(`${data.access_token}`)
-                //res.cookie('session_user', data.id)
-                res.cookie('access_token', data.access_token)
-                res.cookie('refresh_token', data.refresh_token)
+                const access_token = data.access_token
+                if(access_token){
+                    res.redirect('/spotify', {access_token: access_token})
+                }
             })
         })
         .post((req, res, next) => {
