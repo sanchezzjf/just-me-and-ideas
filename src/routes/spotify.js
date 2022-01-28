@@ -46,11 +46,10 @@ spotRouter.route('/auth')
                 if(access_token){
                     res.redirect('/auth?' + stringify({access_token: access_token, refresh_token: refresh_token}))
                 }
-
-                const access_token = req.query.access_token
-                const refresh_token = req.query.refresh_token
-                logger.info(`access: ${access_token}\n refresh: ${refresh_token}`)
             })
+            const access_token = req.query.access_token
+            const refresh_token = req.query.refresh_token
+            logger.info(`access: ${access_token}\n refresh: ${refresh_token}`)
         })
         .post((req, res, next) => {
             const code = req.query.code || null
