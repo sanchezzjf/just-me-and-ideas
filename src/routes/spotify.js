@@ -44,7 +44,7 @@ spotRouter.route('/auth')
                 const access_token = data.access_token
                 const refresh_token = data.refresh_token
                 if(access_token){
-                    res.redirect('/auth?' + stringify({access_token: access_token, refresh_token: refresh_token}))
+                    res.redirect('/spotify/auth?' + stringify({access_token: access_token, refresh_token: refresh_token}))
                 }
             })
             const access_token = req.query.access_token
