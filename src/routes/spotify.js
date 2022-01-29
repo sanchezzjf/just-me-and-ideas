@@ -28,7 +28,7 @@ spotRouter.get('/login', (req, res) => {
 
 spotRouter.route('/auth')
         .get((req, res) => {
-            if(!req.query.access_token || !req.query.refresh_token){
+            if(!req.query.access_token || !req.query.refresh_token || req.cookie.access){
                 const code = req.query.code || null
                 const state = req.query.state || null
             
