@@ -28,33 +28,26 @@ spotRouter.get('/login', (req, res) => {
 
 spotRouter.route('/auth')
         .get((req, res) => {
-            if(!req.query.access_token || !req.query.refresh_token || req.cookie.access){
-                const code = req.query.code || null
-                const state = req.query.state || null
             
-                const authOptions = new URLSearchParams()
-                authOptions.append('code',`${code}`)
-                authOptions.append('redirect_uri',`${redirect_uri}`)
-                authOptions.append('grant_type',`authorization_code`)
-                authOptions.append('json',`true`)
-                
-                getAccessToken(authOptions, client_id, client_secret).then((data) => {
-                    logger.info(`${data.access_token}`)
-                    const access_token = data.access_token
-                    const refresh_token = data.refresh_token
-                    if(access_token){
-                        res.cookie('token', access_token)
-                        res.redirect('/spotify/auth?' + stringify({access_token: access_token, refresh_token: refresh_token}))
-                    }
-                })
-            }
+            const code = req.query.code || null
+            const state = req.query.state || null
+        
+            const authOptions = new URLSearchParams()
+            authOptions.append('code',`${code}`)
+            authOptions.append('redirect_uri',`${redirect_uri}`)
+            authOptions.append('grant_type',`authorization_code`)
+            authOptions.append('json',`true`)
+            
+            getAccessToken(authOptions, client_id, client_secret).then((data) => {
+                logger.info(`${data.access_token}`)
+                const access_token = data.access_token
+                const refresh_token = data.refresh_token
+                if(access_token){
+                    res.cookie('token', access_token)
+                    res.redirect('/spotify')
+                }
+            })
             //sendAuthOptions(code, redirect_uri, auth)
-            const access_token = req.query.access_token
-            const refresh_token = req.query.refresh_token
-            if(access_token && refresh_token){
-                res.cookie('access', access_token)
-                res.redirect('/spotify')
-            }
             logger.info(`access: ${access_token}\n refresh: ${refresh_token}`)
         })
         .post((req, res, next) => {
