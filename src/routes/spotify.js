@@ -53,23 +53,19 @@ spotRouter.route('/auth')
                     })
                     res.cookie('refresh_token', refresh_token, {
                         httpOnly: true,
-                        SameSite: 'strict',
-                        Secure: true 
+                        sameSite: 'strict',
+                        secure: true 
                     })
                     res.redirect('/spotify')
                 }
-                logger.info(`access: ${access_token}\n refresh: ${refresh_token}`)
+                //logger.info(`access: ${access_token}\n refresh: ${refresh_token}`)
             })
             //sendAuthOptions(code, redirect_uri, auth)
         })
-        .post((req, res, next) => {
-            const code = req.query.code || null
-            const state = req.query.state || null   
-            logger.info(`code: ${code}`)
-            logger.info(`state ${state}`)
-        })
+        
 
 spotRouter.post('/users/:command', (req, res) => {
+    logger.info(`${req.params.get_current_user}, ${req.body.access_token}`)
     if(req.params.get_current_user){
         get_current_user(req.body.access_token).then((data) => {
             console.log(data)
