@@ -12,7 +12,9 @@ const client_secret = process.env.CLIENT_SECRET
 
 spotRouter.get('/', (req, res, next) => {
     res.render('spotify/spotHome')
-    logger.info()
+    if(req.cookies){
+        logger.info(`access: ${req.cookies.access_token}`)
+    }
 })
 
 spotRouter.get('/login', (req, res) => {
@@ -39,17 +41,18 @@ spotRouter.route('/auth')
             authOptions.append('json',`true`)
             
             getAccessToken(authOptions, client_id, client_secret).then((data) => {
-                logger.info(`${data.access_token}`)
+                //logger.info(`${data.access_token}`)
                 const access_token = data.access_token
                 const refresh_token = data.refresh_token
                 const expires_in = data.expires_in
                 if(access_token){
-                    res.cookie('token', access_token)
+                    res.cookie('access_token', access_token, {
+                        maxAge: expires_in
+                    })
                     res.cookie('refresh_token', refresh_token, {
                         httpOnly: true,
                         SameSite: 'strict',
-                        Secure: true,
-                        maxAge: expires_in 
+                        Secure: true 
                     })
                     res.redirect('/spotify')
                 }

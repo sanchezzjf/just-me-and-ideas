@@ -12,6 +12,7 @@ import fs from 'fs';
 import https from 'https';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const staticFiles = resolve(__dirname, '../', 'public')
@@ -34,6 +35,7 @@ const DB = 'Site'
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(cors())
+app.use(cookieParser())
 
 app.engine('handlebars', Handlebars({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
