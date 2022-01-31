@@ -46,9 +46,9 @@ spotRouter.route('/auth')
                     res.cookie('token', access_token)
                     res.redirect('/spotify')
                 }
+                logger.info(`access: ${access_token}\n refresh: ${refresh_token}`)
             })
             //sendAuthOptions(code, redirect_uri, auth)
-            logger.info(`access: ${access_token}\n refresh: ${refresh_token}`)
         })
         .post((req, res, next) => {
             const code = req.query.code || null
