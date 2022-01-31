@@ -45,7 +45,7 @@ spotRouter.route('/auth')
                 const expires_in = data.expires_in
                 if(access_token){
                     res.cookie('token', access_token)
-                    res.cookie('refresh_token', refresh_token, { httpOnly: true, SameSite: 'strict', Secure: true, expires: expires_in})
+                    res.cookie('refresh_token', refresh_token, { httpOnly: true, SameSite: 'strict', Secure: true, maxAge: expires_in})
                     res.redirect('/spotify')
                 }
                 logger.info(`access: ${access_token}\n refresh: ${refresh_token}`)
