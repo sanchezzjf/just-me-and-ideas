@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { stringify } from 'querystring';
 import { getAccessToken } from '../helpers/spotAuth.js';
+import { get_current_user } from '../helpers/user.js';
 import { logger } from '../util/logger.js';
 
 const spotRouter = new Router()
@@ -11,10 +12,11 @@ const redirect_uri = process.env.REDIRECT_URI
 const client_secret = process.env.CLIENT_SECRET
 
 spotRouter.get('/', (req, res, next) => {
-    res.render('spotify/spotHome')
-    if(req.cookies){
-        logger.info(`access: ${req.cookies.access_token}`)
+    if(req.cookies.access_token){
+        const access_token = req.cookies.access_token
+        res.render('spotify/spotHome', { access_token: access_token })
     }
+    res.render('spotify/spotHome')
 })
 
 spotRouter.get('/login', (req, res) => {
@@ -66,25 +68,17 @@ spotRouter.route('/auth')
             logger.info(`code: ${code}`)
             logger.info(`state ${state}`)
         })
-/* 
-        if(!err && res.statusCode === 200){
-            const access_token = body.access_token
-            const refresh_token = body.refresh_token
 
-            const options = {
-                url: 'https://api.spotify.com/v1/me',
-                headers: {
-                    'Authorization': 'Bearer' + access_token,
-                },
-                json: true
-            }
-        }
-        console.log(req.body)
+spotRouter.post('/users/:command', (req, res) => {
+    if(req.params.get_current_user){
+        get_current_user(req.body.access_token).then((data) => {
+            console.log(data)
+        })
 
-        res.redirect('/spotify' + stringify({
-            access_token: access_token,
-            refresh_token: refresh_token
-        })) */
+    }
+})
+    
+
 
 
 export { spotRouter } 
