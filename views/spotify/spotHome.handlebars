@@ -4,10 +4,14 @@
         <h1>Welcome!</h1>
         <div>
             <h3>Get your user data</h3>
+            {{#if info}}
+            <div>{{info.country}}</div>
+            {{else}}
             <form action="/spotify/users/get_current_user" method="post">
                 <input type="hidden" name="access_token" value="{{access_token}}">
                 <input type="submit" class="btn btn-success" value="Get">
             </form>
+            {{/if}}
         </div>
     {{else}}
         <a href="/spotify/login"><button class="btn btn-success" id="login">Log in</button></a><!-- redirect /auth -->
