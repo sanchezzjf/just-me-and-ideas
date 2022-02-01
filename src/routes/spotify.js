@@ -70,7 +70,7 @@ spotRouter.post('/users/:command', (req, res) => {
     //logger.info(`${req.params.command}, ${req.body.access_token}`)
     if(req.params.command === 'get_current_user'){
         get_current_user(req.body.access_token).then((data) => {
-            logger.info(`data: ${data}`)
+            logger.info(`data: ${data.country}`)
         })
 
     }
