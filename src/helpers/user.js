@@ -8,8 +8,9 @@ const get_current_user = (access_token) => {
             'Content-type': 'application/json'
         }
     }).then((res) => {
-        res.data
-        logger.info(res.data)
+        const current_user = res.data
+        //logger.info(res.data)
+        return current_user
     })
 }
 
