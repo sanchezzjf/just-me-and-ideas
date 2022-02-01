@@ -71,7 +71,7 @@ spotRouter.post('/users/:command', (req, res) => {
     if(req.params.command === 'get_current_user'){
         get_current_user(req.body.access_token).then((data) => {
             logger.info(data)
-        })
+        }).catch(err => logger.error(err))
 
     }
 })
