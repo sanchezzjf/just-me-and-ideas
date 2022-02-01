@@ -1,5 +1,5 @@
 import axios from "axios";
-import { logger } from "../util/logger";
+import { logger } from "../util/logger.js";
 
 const get_current_user = (access_token) => {
     axios.get('https://api.spotify.com/v1/me', {
