@@ -14,9 +14,11 @@ const client_secret = process.env.CLIENT_SECRET
 spotRouter.get('/', (req, res, next) => {
     if(req.cookies.access_token){
         const access_token = req.cookies.access_token
-        res.render('spotify/spotHome'/* , { access_token: access_token } */)
+        res.render('spotify/spotHome', { access_token: access_token })
     }
-    
+    if(!req.cookies.access_token){
+        res.render('spotify/spotHome')
+    }
 })
 
 spotRouter.get('/login', (req, res) => {
