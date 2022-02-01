@@ -7,7 +7,7 @@ const get_current_user = (access_token) => {
             'Authorization': `Bearer ${access_token}`,
             'Content-type': 'application/json'
         }
-    }).then(res => res.data).catch(err => logger.error(err))
+    }).then(res => res.data)
 }
 
 export { 
