@@ -53,7 +53,7 @@ spotRouter.route('/auth')
                     })
                     res.cookie('refresh_token', refresh_token, {
                         httpOnly: true,
-                        sameSite: 'strict',
+                        //sameSite: 'strict',
                         secure: true 
                     })
                     res.redirect('/spotify')
