@@ -16,7 +16,7 @@ spotRouter.get('/', (req, res, next) => {
         const access_token = req.cookies.access_token
         res.render('spotify/spotHome'/* , { access_token: access_token } */)
     }
-    res.render('spotify/spotHome')
+    
 })
 
 spotRouter.get('/login', (req, res) => {
